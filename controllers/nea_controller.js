@@ -1,5 +1,5 @@
 const Nea = require("../models/nea_model");
-require("../utils/mongo");
+
 
 const getNeas = async (req, res) => {
   let data;
@@ -34,16 +34,18 @@ const getNeas = async (req, res) => {
     res.status(400).json({ error: error });
   }
 };
+
 const createNea = async (req, res) => {
   console.log(req.body);
   try {
     const lan = req.body;
     await Nea.create(lan);
-    res.status(201).json({ message: "nea creada" });
+    res.status(201).json({ message: "Nea created" });
   } catch (err) {
     res.status(400).json({ message: err });
   }
 };
+
 const editNeas = async (req, res) => {
   try {
     let query = { designation: req.params.designation };
@@ -52,15 +54,16 @@ const editNeas = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    res.status(201).json({ message: "nea modificada" });
+    res.status(201).json({ message: "Nea modified" });
   } catch (err) {
     res.status(400).json({ message: err });
   }
 };
+
 const deleteNeas = async (req, res) => {
     try {
       await Nea.deleteOne({ designation: req.params.designation })
-      res.status(200).send('Nea Borrado');
+      res.status(200).send('Nea deleted');
     } catch (err) {
       res.status(400).json({ message: err });
     }

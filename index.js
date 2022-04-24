@@ -4,7 +4,7 @@ require("./utils/mongo");
 const express = require("express");
 const path = require("path");
 const router = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const landings = require("./controllers/landings_controller");
 const nea = require("./controllers/nea_controller");

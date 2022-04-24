@@ -1,5 +1,4 @@
 const Landing = require("../models/landings_model");
-require("../utils/mongo");
 
 const getLandingsMass = async (req, res) => {
   let data;
@@ -67,7 +66,7 @@ const createLanding = async (req, res) => {
   try {
     const lan = req.body;
     await Landing.create(lan);
-    res.status(201).json({ message: "landing creada" });
+    res.status(201).json({ message: "Landing created" });
   } catch (err) {
     res.status(400).json({ message: err });
   }
@@ -81,7 +80,7 @@ const editLanding = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    res.status(201).json({ message: "landing modificada" });
+    res.status(201).json({ message: "Landing modified" });
   } catch (err) {
     res.status(400).json({ message: err });
   }
@@ -89,7 +88,7 @@ const editLanding = async (req, res) => {
 const deleteLanding = async (req, res) => {
   try {
     await Landing.deleteOne({ id: req.params.id })
-    res.status(200).send('Landing Borrado');
+    res.status(200).send('Landing deleted');
   } catch (err) {
     res.status(400).json({ message: err });
   }
